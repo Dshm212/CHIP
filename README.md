@@ -24,4 +24,23 @@ cd CHIP
 pip install -r requirements.txt
 ```
 
-## Data
+## Run
+
+### Train the master model
+The following script is an example to train a master model embedded with the **immutable** signature. The default copyright text is "Copyright to Alice". To customize it, modify line 151 in `./CHIP/models/layers/passportconv2d_private.py`.
+```bash
+CUDA_VISIBLE_DEVICES=0 python train_v23.py \
+  --exp-id bn_image \
+  --dataset cifar10 \
+  --passport-config passport_configs/alexnet_passport_3.json \
+  --arch alexnet \
+  --epoch 200 \
+  --key-type image \
+  --norm-type bn \
+  --tag last3 \
+  --train-private \
+  --hash \
+  --chameleon
+```
+### User triplets generation
+
